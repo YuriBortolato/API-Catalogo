@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36705.20 d17.14
+VisualStudioVersion = 17.14.36705.20
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Apresentacao", "01 - Apresentacao", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "umfgcloud.loja.dominio.serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "umfgcloud.loja.aplicacao.service", "umfgcloud.loja.aplicacao.service\umfgcloud.loja.aplicacao.service.csproj", "{EB3B49CA-088D-4BB7-BF15-39CE35C830E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "umfgcloud.loja.webapi", "umfgcloud.loja.webapi\umfgcloud.loja.webapi.csproj", "{5FE57116-7549-424C-AD52-834B1E12B896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{EB3B49CA-088D-4BB7-BF15-39CE35C830E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB3B49CA-088D-4BB7-BF15-39CE35C830E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3B49CA-088D-4BB7-BF15-39CE35C830E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE57116-7549-424C-AD52-834B1E12B896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE57116-7549-424C-AD52-834B1E12B896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE57116-7549-424C-AD52-834B1E12B896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE57116-7549-424C-AD52-834B1E12B896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{19802E11-70C2-4C57-BF48-D314A8B5CE15} = {7DC331D0-3EC4-40A6-69FB-1CBEB2E0D1EA}
 		{EB3B49CA-088D-4BB7-BF15-39CE35C830E4} = {369CB01D-A1A7-72D2-AABC-3F0945D148A2}
+		{5FE57116-7549-424C-AD52-834B1E12B896} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3BACAED5-D3C5-4E8A-878F-08EECB5E3ED3}

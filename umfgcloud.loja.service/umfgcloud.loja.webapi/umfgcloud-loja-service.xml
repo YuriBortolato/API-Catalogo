@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>umfgcloud.loja.webapi</name>
+    </assembly>
+    <members>
+        <member name="T:umfgcloud.loja.webapi.Controllers.HelthcheckController">
+            <summary>
+            endpoint(s) de verificação de saúde da API
+            </summary>
+        </member>
+        <member name="M:umfgcloud.loja.webapi.Controllers.HelthcheckController.Ping">
+            <summary>
+            verifica o estado de saúde da API
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:umfgcloud.loja.webapi.Controllers.SingupController">
+            <summary>
+            endpoint(s) para cadastrar um usuário
+            </summary>
+        </member>
+        <member name="M:umfgcloud.loja.webapi.Controllers.SingupController.SingupAsync(umfgcloud.loja.dominio.service.DTO.UsuarioDTO.SingUpRequest)">
+            <summary>
+            Cadastra um usuário
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:umfgcloud.loja.webapi.Extensions.ServicosExtensions">
+            <summary>
+            Define quais as implementações para as interfaces
+            criadas ou importadas na solução
+            </summary>
+        </member>
+    </members>
+</doc>
