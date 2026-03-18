@@ -9,12 +9,16 @@ namespace umfgcloud.loja.webapi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Configuration.AddJsonFile("appsettings.json", false);
+            builder.Configuration
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true);
             // Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwagger();
+            builder.Services.AddDataContext(builder.Configuration);
             builder.Services.AddServicos();
 
             var app = builder.Build();

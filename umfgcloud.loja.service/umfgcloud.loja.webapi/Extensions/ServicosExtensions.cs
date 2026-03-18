@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using umfgcloud.infraestrutura.service.Context;
 using umfgcloud.loja.aplicacao.service.Classes;
 using umfgcloud.loja.dominio.service.Interfaces.Servicos;
 
@@ -15,6 +16,7 @@ namespace umfgcloud.loja.webapi.Extensions
             services
                 .AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<MySqlDataBaseContext>()
                 .AddDefaultTokenProviders();
 
             //AddScoped -> cada requisição do front-end cria um objeto na memória e ao final remove
