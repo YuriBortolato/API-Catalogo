@@ -14,12 +14,13 @@ namespace umfgcloud.loja.webapi
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true);
             // Add services to the container.
 
+            builder.Services.AddAutenticacao(builder.Configuration);
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwagger();
             builder.Services.AddDataContext(builder.Configuration);
-            builder.Services.AddServicos();
+            builder.Services.AddServicos(); //isto é exatamente igual a isto: ServicosExtensions.AddServicos(builder.Services);
 
             var app = builder.Build();
 
@@ -31,12 +32,9 @@ namespace umfgcloud.loja.webapi
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }

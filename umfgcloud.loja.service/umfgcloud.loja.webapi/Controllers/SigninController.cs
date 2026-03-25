@@ -21,6 +21,7 @@ namespace umfgcloud.loja.webapi.Controllers
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
+        [HttpPost]
         public async Task<IActionResult> 
             AutenticarAsync(UsuarioDTO.SingInRequest dto)
         {

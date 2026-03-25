@@ -10,7 +10,7 @@ namespace umfgcloud.loja.webapi.Extensions
     /// criadas ou importadas na solução
     /// </summary>
     internal static class ServicosExtensions
-    {
+    {        
         internal static void AddServicos(this IServiceCollection services)
         {
             services
