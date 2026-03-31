@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,13 +45,13 @@ namespace umfgcloud.loja.aplicacao.service.Classes
             => new JwtSecurityToken(Token);
 
         private string GetUserId()
-            => IsPayloadContainsKey(JwtRegisteredClaimNames.NameId)
-            ? GetPayloadValue(JwtRegisteredClaimNames.NameId)
+            => IsPayloadContainsKey(ClaimTypes.NameIdentifier)
+            ? GetPayloadValue(ClaimTypes.NameIdentifier)
             : throw new InvalidDataException("Usuario não possui um id valido.");
 
         private string GetUserEmail()
-            => IsPayloadContainsKey(JwtRegisteredClaimNames.Email)
-            ? GetPayloadValue(JwtRegisteredClaimNames.Email)
+            => IsPayloadContainsKey(ClaimTypes.Email)
+            ? GetPayloadValue(ClaimTypes.Email)
             : throw new InvalidDataException("Usuario não possui um email valido.");
 
         private bool IsPayloadContainsKey(string key)

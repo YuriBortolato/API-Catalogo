@@ -31,7 +31,8 @@ namespace umfgcloud.loja.webapi
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //para autenticacao / autorizacao funcionar esta ordem deve ser seguida a risca
+            //app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

@@ -23,7 +23,7 @@ namespace umfgcloud.loja.webapi.Extensions
 
             //ASCII: a letra K = 107
             var symmetricSecurityKey = 
-                new SymmetricSecurityKey(Encoding.ASCII.GetBytes(securityKey));
+                new SymmetricSecurityKey(Convert.FromBase64String(securityKey));
 
             var tokenValidationParameters = new TokenValidationParameters
             {

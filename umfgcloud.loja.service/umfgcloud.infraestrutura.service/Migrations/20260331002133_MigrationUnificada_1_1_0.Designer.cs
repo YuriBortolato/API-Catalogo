@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using umfgcloud.infraestrutura.service.Context;
 
@@ -10,9 +11,11 @@ using umfgcloud.infraestrutura.service.Context;
 namespace umfgcloud.infraestrutura.service.Migrations
 {
     [DbContext(typeof(MySqlDataBaseContext))]
-    partial class MySqlDataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20260331002133_MigrationUnificada_1_1_0")]
+    partial class MigrationUnificada_1_1_0
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -19,7 +19,7 @@ namespace umfgcloud.loja.webapi.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> AdicionarAsync(ProdutoDTO.ProdutoRequest dto)
         {
             try
@@ -34,7 +34,7 @@ namespace umfgcloud.loja.webapi.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> ObterTodosAsync()
         {
             try
@@ -49,7 +49,7 @@ namespace umfgcloud.loja.webapi.Controllers
         }
 
         [Authorize]
-        //[HttpGet("{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> ObterPorIdAsync([FromRoute] string id)
         {
             try
@@ -64,7 +64,7 @@ namespace umfgcloud.loja.webapi.Controllers
         }
 
         [Authorize]
-        //[HttpPut("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> AtualizarAsync([FromRoute] string id, [FromBody] ProdutoDTO.ProdutoRequest dto)
         {
             try
@@ -81,7 +81,7 @@ namespace umfgcloud.loja.webapi.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoverAsync([FromRoute] string id)
         {
