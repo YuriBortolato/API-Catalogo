@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using umfgcloud.infraestrutura.service.Extensions;
+using umfgcloud.infraestrutura.service.Maps;
 
 namespace umfgcloud.infraestrutura.service.Context;
 
@@ -22,6 +23,8 @@ public sealed class MySqlDataBaseContext : IdentityDbContext
         base.OnModelCreating(builder);
 
         builder.ConfigureToMySQL();
+
+        builder.ApplyConfiguration(new ProdutoMap());
     }
 
     private void ApplyMigrations()

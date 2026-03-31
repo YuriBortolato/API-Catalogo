@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Constantes\" />
-    <Folder Include="Interfaces\Repositorios\" />
   </ItemGroup>
 
   <ItemGroup>
