@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36705.20
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Apresentacao", "01 - Apresentacao", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "umfgcloud.loja.webapi", "umfgcloud.loja.webapi\umfgcloud.loja.webapi.csproj", "{5FE57116-7549-424C-AD52-834B1E12B896}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "umfgcloud.infraestrutura.service", "umfgcloud.infraestrutura.service\umfgcloud.infraestrutura.service.csproj", "{C835CF00-000D-427D-9B4E-751E9A096215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "umfgcloud.aplicacao.service.testes", "umfgcloud.aplicacao.service.testes\umfgcloud.aplicacao.service.testes.csproj", "{ADD86983-BA7F-4D86-9ADC-0DBE756086B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{C835CF00-000D-427D-9B4E-751E9A096215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C835CF00-000D-427D-9B4E-751E9A096215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C835CF00-000D-427D-9B4E-751E9A096215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD86983-BA7F-4D86-9ADC-0DBE756086B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD86983-BA7F-4D86-9ADC-0DBE756086B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD86983-BA7F-4D86-9ADC-0DBE756086B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD86983-BA7F-4D86-9ADC-0DBE756086B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{EB3B49CA-088D-4BB7-BF15-39CE35C830E4} = {369CB01D-A1A7-72D2-AABC-3F0945D148A2}
 		{5FE57116-7549-424C-AD52-834B1E12B896} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{C835CF00-000D-427D-9B4E-751E9A096215} = {643747C7-0307-8931-84D8-A7D1915E22E5}
+		{ADD86983-BA7F-4D86-9ADC-0DBE756086B1} = {5835D766-9847-1D08-5E95-5A99FD0F495D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3BACAED5-D3C5-4E8A-878F-08EECB5E3ED3}
