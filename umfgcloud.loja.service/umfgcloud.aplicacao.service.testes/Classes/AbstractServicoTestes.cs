@@ -6,20 +6,20 @@ using Microsoft.Net.Http.Headers;
 using Moq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using umfgcloud.infraestrutura.service.Classes;
 using umfgcloud.infraestrutura.service.Context;
 using umfgcloud.loja.aplicacao.service.Classes;
 using umfgcloud.loja.dominio.service.Classes;
 using umfgcloud.loja.dominio.service.DTO;
+using umfgcloud.loja.dominio.service.Interfaces.Repositorios;
 
 namespace umfgcloud.aplicacao.service.testes.Classes;
 
 public abstract class AbstractServicoTestes
 {
-    private const string C_CLAIM_DEFAULT = "default-claim";
     private const string C_ROLE_DEFAULT = "default-role";
     private const string C_AUTHENTICATION_AUDIENCE = "altas.mars.net.br";
     private const string C_AUTHENTICATION_ISSUER = "marscloud.atlas.service";
-    private const string C_AUTHENTICATION_SIGNING_KEY = "J2ElY01rcl1HYiEse18tY08ueTM5fmJrPU92ImI7Pnl4I0wzV2Y5XSY+U3JsZVknQGJJbmBXUnRXQmp0ayU7";
 
     private const string C_AUTHORIZATION = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." +
         "eyJtb2R1bGVzIjoiVG9kb3MiLCJzdWIiOiI0NTUzZmMwNi1mYWM2LTQwMmMtOWVmYy05MDA0ZDhjMjE3" +
@@ -30,7 +30,6 @@ public abstract class AbstractServicoTestes
         "c2VydmljZSIsImF1ZCI6ImF0bGFzLm1hcnMubmV0LmJyIn0.Yb1CXbTIl93aeOqCP9ioWrLk09hP0Q65" +
         "2l2A4HzDpGw";
 
-    private readonly static IEnumerable<string> _modules = ["Fiscal",];
     protected const string C_USER_PASSWORD = "123Mudar@";
 
     private static string Token => GetHttpContextAccessor()?.HttpContext?.Request.Headers[HeaderNames.Authorization].ToString().Split(" ").LastOrDefault() ?? string.Empty;
@@ -52,6 +51,8 @@ public abstract class AbstractServicoTestes
     }
 
     #endregion context
+
+    #region identity services
 
     protected static UsuarioServico GetUsuarioServico(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
        => new (userManager, roleManager, signInManager, GetJwtOptions());
@@ -346,6 +347,17 @@ public abstract class AbstractServicoTestes
 
     protected static IdentityUser GetIdentityUser() => new(UserEmail);
 
+    #endregion identity services
+
+    #region outros
+
+    protected static ProdutoServico GetProdutoServico(IProdutoRepositorio produtoRepositorio) 
+        => new(GetHttpContextAccessor(), produtoRepositorio);
+
+    #endregion outros
+
+    protected static ProdutoRepositorio GetProdutoRepositorio(MySqlDataBaseContext context) => new(context);
+
     private static Mock<SignInManager<IdentityUser>> GetMockSignInManager()
     {
         var userManager = GetUserManagerSuccess();
@@ -496,6 +508,8 @@ public abstract class AbstractServicoTestes
             RefreshTokenExpiration = 1,
         });
 
+    private static IdentityRole GetIdentityRole() => new(C_ROLE_DEFAULT);
+
     private static IHttpContextAccessor GetHttpContextAccessor()
     {
         var headerDictionary = new HeaderDictionary();
@@ -508,6 +522,4 @@ public abstract class AbstractServicoTestes
 
         return mock.Object;
     }
-
-    private static IdentityRole GetIdentityRole() => new(C_ROLE_DEFAULT);
 }
