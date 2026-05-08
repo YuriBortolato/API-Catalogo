@@ -1,63 +1,130 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Esf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using umfgcloud.loja.dominio.service.DTO;
 
-namespace umfgcloud.aplicacao.service.testes.Classes;
-
-[TestClass]
-public sealed class ProdutoServicoTestes : AbstractServicoTestes
+namespace umfgcloud.aplicacao.service.testes.Classes
 {
-    #region variaveis privadas
-
-    private const string C_CATEGORY = "produto";
-    private const string C_OWNER = "Juliano Ribeiro de Souza Maciel";
-
-    #endregion variaveis privadas
-
-    [TestMethod]
-    [Owner(C_OWNER)]
-    [TestCategory(C_CATEGORY)]
-    public async Task ProdutoServico_AdicionarAsync_Sucesso()
+    [TestClass]
+    public sealed class ProdutoServicoTestes : AbstractServicoTestes
     {
-        try
-        {
-            //obtem instacia do contexto do banco de dados
-            using var context = GetSqlServerDatabaseContext(Guid.NewGuid().ToString());
+        private const string C_OWNER = "Juliano Maciel";
+        private const string C_CATEGORY = "produto";
+        private const decimal C_VALOR_NEGATIVO = -89.90m;
 
-            var repositorio = GetProdutoRepositorio(context);
-            var service = GetProdutoServico(repositorio);
-            var dto = new ProdutoDTO.ProdutoRequest()
+        [TestMethod]
+        [Owner(C_OWNER)]
+        [TestCategory(C_CATEGORY)]
+        public async Task ProdutoServico_AdicionarAsync_Sucesso()
+        {
+            try
             {
-                Descricao = "Produto Teste",
-                EAN = "123456789",
-                ValorCompra = 10.00m,
-                ValorVenda = 15.00m,
-            };
+                //o objetivo do using é o desenvolvedor ter controlle sobre o 
+                //dispose do objeto
+                using var context = GetSqlServerDatabaseContext(Guid.NewGuid().ToString());
 
-            await service.AdicionarAsync(dto);
+                var servico = GetProdutoServicoValidJWT(context);
+                var dto = new ProdutoDTO.ProdutoRequest()
+                {
+                    Descricao = "TESTE",
+                    EAN = "123456789",
+                    ValorCompra = 39.90m,
+                    ValorVenda = 89.90m,
+                };
 
-            var produto = (await repositorio.ObterTodosAsync()).FirstOrDefault();
+                await servico.AdicionarAsync(dto);
 
-            Assert.IsNotNull(produto);
-            Assert.IsFalse(Guid.Empty.Equals(produto.Id));
-            Assert.AreEqual(UserId, produto.CreatedByUserId);
-            Assert.AreEqual(UserId, produto.UpdatedByUserId);
-            Assert.AreEqual(UserEmail, produto.CreatedByUserEmail);
-            Assert.AreEqual(UserEmail, produto.UpdatedByUserEmail);
-            Assert.IsTrue(produto.CreatedAt <= DateTime.UtcNow);
-            Assert.IsTrue(produto.UpdatedAt <= DateTime.UtcNow);
-            Assert.AreEqual(dto.Descricao, produto.Descricao);
-            Assert.AreEqual(dto.EAN, produto.EAN);
-            Assert.AreEqual(dto.ValorCompra, produto.ValorCompra);
-            Assert.AreEqual(dto.ValorVenda, produto.ValorVenda);
-            Assert.IsTrue(produto.IsActive);
+                var produto = (await servico.ObterTodosAsync()).FirstOrDefault();
+
+                Assert.IsNotNull(produto);
+                Assert.AreNotEqual(Guid.Empty, produto.Id);
+                Assert.AreEqual("TESTE", produto.Descricao);
+                Assert.AreEqual("123456789", produto.EAN);
+                Assert.AreEqual(39.90m, produto.ValorCompra);
+                Assert.AreEqual(89.90m, produto.ValorVenda);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
         }
-        catch (Exception ex)
+
+        [TestMethod]
+        [Owner(C_OWNER)]
+        [TestCategory(C_CATEGORY)]
+        public async Task ProdutoServico_AdicionarAsync_FalhaValorCompraNegativo()
         {
-            Assert.Fail(ex.Message);
+            try
+            {
+                //o objetivo do using é o desenvolvedor ter controlle sobre o 
+                //dispose do objeto
+                using var context = GetSqlServerDatabaseContext(Guid.NewGuid().ToString());
+
+                var servico = GetProdutoServicoValidJWT(context);
+                var dto = new ProdutoDTO.ProdutoRequest()
+                {
+                    Descricao = "TESTE",
+                    EAN = "123456789",
+                    ValorCompra = -39.90m,
+                    ValorVenda = 89.90m,
+                };
+
+                await Assert.ThrowsExceptionAsync<InvalidDataException>(() => servico.AdicionarAsync(dto));
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [Owner(C_OWNER)]
+        [TestCategory(C_CATEGORY)]
+        public async Task ProdutoServico_AdicionarAsync_FalhaValorVendaNegativo()
+        {
+            try
+            {
+                //o objetivo do using é o desenvolvedor ter controlle sobre o 
+                //dispose do objeto
+                using var context = GetSqlServerDatabaseContext(Guid.NewGuid().ToString());
+
+                var servico = GetProdutoServicoValidJWT(context);
+                var dto = new ProdutoDTO.ProdutoRequest()
+                {
+                    Descricao = "TESTE",
+                    EAN = "123456789",
+                    ValorCompra = 39.90m,
+                    ValorVenda = -89.90m,
+                };
+
+                await Assert.ThrowsExceptionAsync<InvalidDataException>(() => servico.AdicionarAsync(dto));
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [Owner(C_OWNER)]
+        [TestCategory(C_CATEGORY)]
+        public void ProdutoServico_Instanciar_Falha()
+        {
+            try
+            {
+                //o objetivo do using é o desenvolvedor ter controlle sobre o 
+                //dispose do objeto
+                using var context = GetSqlServerDatabaseContext(Guid.NewGuid().ToString());
+
+                Assert.ThrowsException<InvalidDataException>(() => GetProdutoServicoInvalidJWT(context));
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
         }
     }
 }

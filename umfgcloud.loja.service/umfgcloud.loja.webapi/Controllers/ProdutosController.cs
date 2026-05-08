@@ -6,10 +6,8 @@ using umfgcloud.loja.dominio.service.Interfaces.Servicos;
 
 namespace umfgcloud.loja.webapi.Controllers
 {
-    [ApiController]
     [ApiVersion("1.0")]
-    [Route("[controller]")]
-    public sealed class ProdutosController : ControllerBase
+    public sealed class ProdutosController : AbstractController
     {
         private readonly IProdutoServico _servico;
 
@@ -51,17 +49,7 @@ namespace umfgcloud.loja.webapi.Controllers
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> ObterPorIdAsync([FromRoute] string id)
-        {
-            try
-            {
-                //retorna o status 200 e retorna um objeto
-                return Ok(await _servico.ObterPorIdAsync(new Guid(id)));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+            => await InvokeMethodAsync(_servico.ObterPorIdAsync, new Guid(id));
 
         [Authorize]
         [HttpPut("{id}")]

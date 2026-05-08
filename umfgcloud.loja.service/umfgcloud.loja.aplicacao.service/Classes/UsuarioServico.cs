@@ -90,9 +90,6 @@ namespace umfgcloud.loja.aplicacao.service.Classes
 
             var resultado = await _userManager.CreateAsync(identityUser, dto.Password);
 
-            if (resultado is null)
-                throw new ArgumentException("Usuario nao foi criado!");
-
             if (!resultado.Succeeded && resultado.Errors.Any())
                 throw new InvalidOperationException(string.Join("\n", resultado.Errors.Select(x => x.Description)));
 

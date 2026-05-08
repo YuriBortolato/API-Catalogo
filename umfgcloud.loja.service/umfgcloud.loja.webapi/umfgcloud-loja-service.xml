@@ -18,6 +18,8 @@
         <member name="M:umfgcloud.loja.webapi.Controllers.SigninController.AutenticarAsync(umfgcloud.loja.dominio.service.DTO.UsuarioDTO.SingInRequest)">
             <summary>
             Efetua o login do usuário
+            Aula 27/04/2026 conceito de refatoração:
+                Alterar os atributos internos do código sem alterar o seu comportamento
             </summary>
             <param name="dto"></param>
             <returns></returns>
